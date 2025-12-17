@@ -21,7 +21,7 @@ npm install
 
 # Configure API endpoint
 cp .env.local.example .env.local
-# Edit .env.local: NEXT_PUBLIC_API_URL=http://localhost:8000
+# Edit .env.local: BACKEND_API_URL=http://localhost:8000
 
 # Run development server
 npm run dev
@@ -135,7 +135,7 @@ async rewrites() {
   return [
     {
       source: '/api/:path*',
-      destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
+      destination: `${process.env.BACKEND_API_URL}/:path*`,
     },
   ];
 }

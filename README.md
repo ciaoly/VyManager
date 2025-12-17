@@ -71,7 +71,7 @@ VYMANAGER_ENV=production  #Leave Alone
 BETTER_AUTH_SECRET=your-super-secret-key-change-in-production-CHANGE-THIS
 BETTER_AUTH_URL=http://localhost:3000  #Leave Alone
 NEXT_PUBLIC_APP_URL=http://localhost:3000  #Leave Alone
-NEXT_PUBLIC_API_URL=http://backend:8000  #Leave Alone
+BACKEND_API_URL=http://backend:8000  #Leave Alone
 DATABASE_URL=postgresql://vymanager:vymanager_secure_password@postgres:5432/vymanager_auth  #Change if db changed
 TRUSTED_ORIGINS=http://your-server-ip:3000,http://localhost:3000  #Add your server IP
 ```
@@ -93,7 +93,7 @@ VYOS_TIMEOUT=10
 ```
 
 ### Step 3) Edit `docker-compose.yml` and change specific configuration values:
-Change `NEXT_PUBLIC_API_URL` and `DATABASE_URL` in `docker-compose.yml`.
+Change `BACKEND_API_URL` and `DATABASE_URL` in `docker-compose.yml`.
 Leave the other configuration values which already have a default reference to .env files (indicated by the `${X}` sign)
 
 ---
@@ -156,7 +156,7 @@ npm install
 
 # Create environment file
 cp .env.local.example .env.local
-# .env.local should have: NEXT_PUBLIC_API_URL=http://localhost:8000
+# .env.local should have: BACKEND_API_URL=http://localhost:8000
 
 # Run frontend dev server
 npm run dev

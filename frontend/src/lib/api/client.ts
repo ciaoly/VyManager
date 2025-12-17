@@ -6,7 +6,7 @@
 // Use /api proxy in browser to avoid CORS, direct URL in server-side
 const API_BASE_URL = typeof window !== 'undefined'
   ? '/api'
-  : (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000");
+  : (process.env.BACKEND_API_URL || "http://127.0.0.1:8000");
 
 export interface ApiError {
   message: string;
