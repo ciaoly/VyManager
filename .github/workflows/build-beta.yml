@@ -35,6 +35,8 @@ jobs:
     steps:
       - name: ⬇️ Checkout Code
         uses: actions/checkout@v4
+        with:
+          ref: beta
         # 如果需要拉取完整历史记录，可设置 fetch-depth: 0
 
       - name: ⚙️ Set up Docker Buildx
