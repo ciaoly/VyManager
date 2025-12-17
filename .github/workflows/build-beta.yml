@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - beta
+  pull_request:
+    branches: [ "beta" ]
 
 # -----------------------------------------------
 # 注意事项：
