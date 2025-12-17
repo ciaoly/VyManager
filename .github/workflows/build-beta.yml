@@ -27,7 +27,7 @@ env:
 jobs:
   docker-build-and-tag:
     # 确保只在 beta 分支上运行
-    if: github.ref == 'refs/heads/beta'
+    if: github.ref == 'refs/heads/beta'|| github.base_ref == 'beta'
     
     runs-on: ubuntu-latest
 
