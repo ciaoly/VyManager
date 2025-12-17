@@ -23,6 +23,7 @@ env:
   # 获取您的用户名，用于构建 ghcr.io/<USERNAME>/vymanager
   # 注意：github.repository_owner 是最安全的获取方式
   OWNER: ${{ github.repository_owner }}
+  NEXT_PUBLIC_API_URL: http://vymanager-backend:8000
 
 jobs:
   docker-build-and-tag:
