@@ -15,6 +15,12 @@ on:
 #    当您从上游 main 合并到您的 beta 时，会产生一次 push，从而触发此工作流。
 # -----------------------------------------------
 
+env:
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}-frontend
+  # 获取您的用户名，用于构建 ghcr.io/<USERNAME>/vymanager
+  # 注意：github.repository_owner 是最安全的获取方式
+  OWNER: ${{ github.repository_owner }}
 
 jobs:
   docker-build-and-tag:
@@ -22,12 +28,6 @@ jobs:
     if: github.ref == 'refs/heads/beta'
     
     runs-on: ubuntu-latest
-    # 定义一些可重用的变量
-    vars:
-      IMAGE_NAME: ${{ github.repository }}-frontend
-      # 获取您的用户名，用于构建 ghcr.io/<USERNAME>/vymanager
-      # 注意：github.repository_owner 是最安全的获取方式
-      OWNER: ${{ github.repository_owner }}
 
     steps:
       - name: ⬇️ Checkout Code
@@ -41,7 +41,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ vars.OWNER }}
+          username: ${{ env.OWNER }}
           # 使用内置的 GITHUB_TOKEN，它具有推送到 GHCR 的默认权限
           password: ${{ secrets.GITHUB_TOKEN }} 
           
@@ -49,7 +49,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ vars.OWNER }}/${{ vars.IMAGE_NAME }}
+          images: ghcr.io/${{ env.OWNER }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=beta
             type=sha,format=short
